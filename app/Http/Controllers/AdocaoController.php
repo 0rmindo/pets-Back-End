@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AdocaoCollection;
-use Illuminate\Http\Request;
 use App\Models\Adocao;
 use App\Rules\AdocaoUnicaPet;
+use Illuminate\Http\Request;
 
 class AdocaoController extends Controller
 {
-
     public function index()
     {
         $adocoes = Adocao::with('pet')->get();
@@ -31,8 +30,8 @@ class AdocaoController extends Controller
             "pet_id" => ['required', 'int', 'exists:pets,id']
         ]);
 
-        $dadosDaAdicao = $request->all();
-        
-        return Adocao::create($dadosDaAdicao);
+        $dadosDaAdocao = $request->all();
+
+        return Adocao::create($dadosDaAdocao);
     }
 }
